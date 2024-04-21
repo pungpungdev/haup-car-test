@@ -39,7 +39,7 @@ const createCar = async (req,res) => {
         const queryText = 'INSERT INTO all_cars (registration, brand, model, description, remark) VALUES (?, ?, ?, ?, ?)'
         const data = await mySqlPool.query(queryText,[registration, brand, model, description, remark])
         if(data){
-            res.status(201).send({
+            res.status(200).send({
                 message: "car created"
             })
         }
@@ -58,7 +58,7 @@ const updateCar = async (req,res) => {
         const queryText = 'UPDATE all_cars SET registration = ?, brand = ?, model = ?, description = ?, remark = ? WHERE id = ?'
         const data = await mySqlPool.query(queryText,[registration, brand, model, description, remark, targetId])
         if(data){
-            res.status(201).send({
+            res.status(200).send({
                 message: "car updated"
             })
         }
@@ -76,7 +76,7 @@ const deleteCar = async (req,res) => {
         const queryText = 'UPDATE all_cars SET is_del = ? WHERE id = ?'
         const data = await mySqlPool.query(queryText,['Y', targetId])
         if(data){
-            res.status(201).send({
+            res.status(200).send({
                 message: "car deleted"
             })
         }

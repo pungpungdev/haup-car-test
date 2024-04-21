@@ -1,3 +1,4 @@
+require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
@@ -9,4 +10,4 @@ app.use(cors());
 
 app.use('/car', carRoutes);
 
-app.listen(8000,()=> console.log('server start at port:8000...'))
+app.listen(process.env.PORT,()=> console.log(`server running on port:${process.env.PORT}`))
