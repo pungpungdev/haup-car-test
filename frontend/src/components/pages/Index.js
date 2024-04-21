@@ -8,14 +8,14 @@ import { Button, Layout, Menu, theme } from 'antd';
 import ManageCar from './ManageCar';
 const { Header, Sider, Content } = Layout;
 export default function Index  () {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div style={{padding:'20px',overflow:'hidden'}}>
+        <div style={{margin:'20px',overflow:'hidden'}}>
         <img src="haup_logo.png"  width="94" height="22"/>
         </div>
         
