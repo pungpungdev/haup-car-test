@@ -5,7 +5,7 @@ const getAllCar = async (req, res) => {
     const {searchText} = req.query
     console.log(req.query)
     
-    const queryText = `SELECT * FROM all_cars 
+    const queryText = `SELECT * FROM all_cars2 
         WHERE (is_del IS NULL OR is_del <> ?) and (
             CASE WHEN ? IS NULL THEN TRUE
                 ELSE CONCAT(IFNULL(registration,''),IFNULL(brand,''),IFNULL(model,''),IFNULL(remark,'')) LIKE CONCAT('%',?,'%')
@@ -26,7 +26,7 @@ const getAllCar = async (req, res) => {
 const getCarById = async (req, res) => {
   try {
     const targetId = req.params.id;
-    const queryText = "SELECT * FROM all_cars WHERE id = ?";
+    const queryText = "SELECT * FROM all_cars2 WHERE id = ?";
     const data = await mySqlPool.query(queryText, [targetId]);
     if (data) {
       res.status(200).json(data[0]);
@@ -43,7 +43,7 @@ const createCar = async (req, res) => {
   try {
     const { registration, brand, model, description, remark } = req.body;
     const queryText =
-      "INSERT INTO all_cars (registration, brand, model, description, remark) VALUES (?, ?, ?, ?, ?)";
+      "INSERT INTO all_cars2 (registration, brand, model, description, remark) VALUES (?, ?, ?, ?, ?)";
     const data = await mySqlPool.query(queryText, [
       registration,
       brand,
@@ -69,7 +69,7 @@ const updateCar = async (req, res) => {
     const targetId = req.params.id;
     const { registration, brand, model, description, remark } = req.body;
     const queryText =
-      "UPDATE all_cars SET registration = ?, brand = ?, model = ?, description = ?, remark = ? WHERE id = ?";
+      "UPDATE all_cars2 SET registration = ?, brand = ?, model = ?, description = ?, remark = ? WHERE id = ?";
     const data = await mySqlPool.query(queryText, [
       registration,
       brand,
@@ -94,7 +94,7 @@ const updateCar = async (req, res) => {
 const deleteCar = async (req, res) => {
   try {
     const targetId = req.params.id;
-    const queryText = "UPDATE all_cars SET is_del = ? WHERE id = ?";
+    const queryText = "UPDATE all_cars2 SET is_del = ? WHERE id = ?";
     const data = await mySqlPool.query(queryText, ["Y", targetId]);
     if (data) {
       res.status(200).send({

@@ -17,6 +17,8 @@ export default function ContextCar() {
         item.key = item.id;
       });
       setAllCars(arrCars);
+    }else{
+      setAllCars([]);
     }
   };
   const delCar = async () => {
