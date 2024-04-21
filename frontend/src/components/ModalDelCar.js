@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../App";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import { ExclamationCircleFilled } from "@ant-design/icons";
-import axios from "../config/axios";
 const ModalDelCar = () => {
   const [contextCarObj, contextNotiObj] = useContext(Context);
   const {

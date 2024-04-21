@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import {Route, Routes } from 'react-router-dom';
 import Index from './components/pages/Index';
-import axios from './config/axios';
 import ContextCar from './components/context/ContextCar';
 import ContextNoti from './components/context/ContextNoti';
 

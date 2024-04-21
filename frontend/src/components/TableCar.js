@@ -1,25 +1,24 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Table } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import axios from "../config/axios";
 import { Context } from "../App";
 
-export default function TableCar(props) {
-    const [contextCarObj] = useContext(Context);
+export default function TableCar() {
+  const [tableParams, setTableParams] = useState({
+    pagination: {
+      current: 1,
+      pageSize: 5,
+    },
+  });
+  const [contextCarObj] = useContext(Context);
   const {
-    selectedCar,
     setSelectedCar,
-    isModalOpen,
     setIsModalOpen,
-    isEdit,
     setIsEdit,
-    isModalDelOpen,
     setIsModalDelOpen,
     allCars,
-    setAllCars,
-    fetchCars
-   } = contextCarObj;
-
+    fetchCars,
+  } = contextCarObj;
 
   const onClickEditCar = (targetId) => {
     console.log(targetId);
@@ -50,6 +49,7 @@ export default function TableCar(props) {
 
   useEffect(() => {
     fetchCars();
+    // eslint-disable-next-line
   }, []);
 
   const columns = [
@@ -123,6 +123,11 @@ export default function TableCar(props) {
 
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
+    setTableParams({
+        pagination,
+        filters,
+        ...sorter,
+    });
   };
 
   return (
@@ -130,6 +135,7 @@ export default function TableCar(props) {
       columns={columns}
       dataSource={allCars}
       onChange={onChange}
+      pagination={tableParams.pagination}
       style={{ width: "100%", overflow: "auto" }}
     />
   );

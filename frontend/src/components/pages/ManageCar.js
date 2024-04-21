@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Button, Col, Input, Row } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import TableCar from "../TableCar";
@@ -7,14 +7,15 @@ import { Context } from "../../App";
 import ModalDelCar from "../ModalDelCar";
 
 export default function ManageCar() {
+
   const [contextCarObj] = useContext(Context);
   const {
-    selectedCar,
     setSelectedCar,
-    isModalOpen,
     setIsModalOpen,
-    isEdit,
     setIsEdit,
+    fetchCars,
+    searchCar,
+    setSearchCar,
   } = contextCarObj;
 
   const addCarFunc = () => {
@@ -38,10 +39,11 @@ export default function ManageCar() {
         <Row justify="center">
           <Col span={24}>
             <Row justify="start" className="flex-flow">
-              <Input style={{ margin: "0 10px 10px 0" }} />
+              <Input style={{ margin: "0 10px 10px 0" }} value={searchCar} onChange={(e) => setSearchCar(e.target.value)} />
               <Button
                 icon={<SearchOutlined />}
                 style={{ margin: "0 10px 10px 0" }}
+                onClick={fetchCars}
               >
                 ค้นหา
               </Button>

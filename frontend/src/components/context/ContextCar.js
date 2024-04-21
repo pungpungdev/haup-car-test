@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "../../config/axios";
 
 export default function ContextCar() {
@@ -7,8 +7,9 @@ export default function ContextCar() {
   const [isModalDelOpen, setIsModalDelOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [allCars, setAllCars] = useState([]);
+  const [searchCar, setSearchCar] = useState('');
   const fetchCars = async () => {
-    const res = await axios.get("/car");
+    const res = await axios.get("/car?searchText="+searchCar);
     console.log(res);
     if (res.data.length > 0) {
       let arrCars = [...res.data];
@@ -48,6 +49,8 @@ export default function ContextCar() {
     setIsModalDelOpen,
     allCars,
     setAllCars,
+    searchCar,
+    setSearchCar,
     fetchCars,
     delCar,
     updateCar,
