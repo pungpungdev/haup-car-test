@@ -4,7 +4,7 @@ const mySqlPool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: 'haup_car'
+    database: process.env.DB_SCHEMA
 })
 
 module.exports = mySqlPool;
